@@ -22,7 +22,7 @@ const DecisionPanel = ({ result, onDecisionComplete }) => {
   if (!result || completedAction) {
     if (completedAction) {
       return (
-        <Card className="border-2 border-foreground bg-background shadow-2xl highlight-contrast">
+        <Card className="border-2 border-foreground bg-background shadow-2xl">
           <CardHeader className="text-center pb-2">
             <div className="mx-auto bg-background p-2 rounded-full mb-2 w-fit border border-foreground">
               <Check className="h-6 w-6 text-foreground" />
@@ -31,8 +31,11 @@ const DecisionPanel = ({ result, onDecisionComplete }) => {
           </CardHeader>
           <CardContent className="text-center text-foreground/90 pb-6 font-bold">
             <p>
-              You {completedAction.toLowerCase().replace("banker_", "")}d this
-              verification.
+              {completedAction === "REQUEST_RECAPTURE"
+                ? "You requested a re-capture for this verification."
+                : `You ${completedAction
+                    .toLowerCase()
+                    .replace("banker_", "")}d this verification.`}
             </p>
           </CardContent>
         </Card>
@@ -55,6 +58,9 @@ const DecisionPanel = ({ result, onDecisionComplete }) => {
         .replace("BANKER_", "")
         .replace("REQUEST_", "");
       addAuditLog({
+        // Save full result for detailed view, but handle overlaps
+        ...result,
+        ai_decision: result.decision, // Preserve AI decision
         action: "VERIFICATION",
         status: result.decision === "approve" ? "SUCCESS" : "FAILED",
         decision: decisionLabel,
