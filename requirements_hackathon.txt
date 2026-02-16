@@ -4,11 +4,12 @@
 fastapi
 uvicorn[standard]
 python-multipart
-deepface
-tf-keras
-opencv-python
+deepface>=0.0.98
+tensorflow==2.15.0
+tf-keras==2.15.0
+opencv-python-headless
 mediapipe
-numpy
-scipy
+numpy<2.0.0
+scipy>=1.10.1
 Pillow
 retinaface
