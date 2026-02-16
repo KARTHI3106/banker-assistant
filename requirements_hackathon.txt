@@ -15,7 +15,7 @@ numpy==1.26.4
 opencv-python-headless==4.9.0.80
 mediapipe==0.10.9
 deepface==0.0.92
-retinaface==0.0.17
+retinaface==1.1.1
 
 # Utilities
 scipy==1.14.1
