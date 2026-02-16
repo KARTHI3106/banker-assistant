@@ -375,12 +375,32 @@ const Dashboard = () => {
                           id="person-gender"
                           value={personGender}
                           onChange={(e) => setPersonGender(e.target.value)}
-                          className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-foreground shadow-sm transition-all"
                         >
-                          <option value="">Select</option>
-                          <option value="Male">Male</option>
-                          <option value="Female">Female</option>
-                          <option value="Other">Other</option>
+                          <option
+                            value=""
+                            className="bg-background text-foreground"
+                          >
+                            Select
+                          </option>
+                          <option
+                            value="Male"
+                            className="bg-background text-foreground"
+                          >
+                            Male
+                          </option>
+                          <option
+                            value="Female"
+                            className="bg-background text-foreground"
+                          >
+                            Female
+                          </option>
+                          <option
+                            value="Other"
+                            className="bg-background text-foreground"
+                          >
+                            Other
+                          </option>
                         </select>
                       </div>
                     </div>
