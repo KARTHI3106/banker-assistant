@@ -9,7 +9,7 @@ tensorflow==2.15.0
 tf-keras==2.15.0
 numpy==1.26.4
 # Computer Vision & Face
-opencv-python-headless
+opencv-python-headless==4.9.0.80
 mediapipe==0.10.9
 deepface>=0.0.98
 retinaface
