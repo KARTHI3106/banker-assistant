@@ -1,19 +1,26 @@
-# Face Verification System — Hackathon Requirements
-# Minimal dependencies for fast setup
+# Face Verification System — Fully Pinned for Render
+# All versions locked to prevent pip backtracking
 
-fastapi
-uvicorn[standard]
-python-multipart
-# Deep Learning Core (Pinned for compatibility)
+# Web Framework
+fastapi==0.115.0
+uvicorn==0.30.6
+python-multipart==0.0.12
+
+# Deep Learning Core
 tensorflow==2.15.0
 tf-keras==2.15.0
 numpy==1.26.4
-# Computer Vision & Face
+
+# Computer Vision & Face Recognition
 opencv-python-headless==4.9.0.80
 mediapipe==0.10.9
-deepface>=0.0.98
-retinaface
+deepface==0.0.92
+retinaface==0.0.17
+
 # Utilities
-scipy>=1.10.1
-Pillow
+scipy==1.14.1
+Pillow==10.4.0
 protobuf==3.20.3
+
+# Database (SQLAlchemy will be pulled by FastAPI/Pydantic)
+# Auth (bcrypt, python-jose will be auto-installed)
