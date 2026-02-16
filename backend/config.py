@@ -12,7 +12,7 @@ load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "mysql+pymysql://root:manaadithya%40123@localhost:3306/banker_verification",
+    "sqlite:///./banker_verification.db",
 )
 
 JWT_SECRET = os.getenv("JWT_SECRET", "banker_face_verify_super_secret_key_2024")

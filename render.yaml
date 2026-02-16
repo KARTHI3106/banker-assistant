@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: banker-verify-api
+    env: python
+    buildCommand: pip install -r requirements_hackathon.txt
+    startCommand: python -m uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///./banker_verification.db # Default to SQLite for easy hackathon deployment

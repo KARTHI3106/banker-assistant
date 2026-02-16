@@ -8,55 +8,29 @@ Since this project uses a heavy ML backend (`DeepFace`, `TensorFlow`), we use a 
 
 1.  **Frontend**: Deployed on **Vercel** (Fast, Secure, Modern).
 2.  **Backend**: Deployed on **Render** (Supports heavy Linux environments and Large ML models).
-3.  **Database**: **SQLite** (included in backend) or a managed **MySQL** (RDS/Aiven).
 
 ---
 
 ## 🎨 Step 1: Frontend (Vercel)
 
-### 1. Separate your Code
-
-Vercel works best if it knows where your React code is.
-
-- In the Vercel Dashboard, Import your Repo.
-- **Root Directory**: Select `frontend-react`.
-- **Framework Preset**: `Vite`.
-- **Build Command**: `npm run build`.
-- **Output Directory**: `dist`.
-
-### 2. Set Environment Variables
-
-In Vercel Settings -> Environment Variables, add:
-
-- `VITE_API_URL`: `https://your-backend-url.onrender.com/api/v1`
+1.  In the Vercel Dashboard, Import your Repo.
+2.  **Root Directory**: Set to `frontend-react`.
+3.  **Framework Preset**: `Vite`.
+4.  **Environment Variables**: Add `VITE_API_URL` set to your Render URL (e.g. `https://your-api.onrender.com`).
 
 ---
 
 ## 🧠 Step 2: Backend (Render.com)
 
-Render is recommended because it handles heavy Python dependencies better than Vercel.
+I've added a **Blueprint** (`render.yaml`) to make this automatic.
 
-### 1. Create a `Render Blueprint` (render.yaml)
-
-Create this file in your project root:
-
-```yaml
-services:
-  - type: web
-    name: banker-verify-api
-    env: python
-    buildCommand: pip install -r requirements_hackathon.txt
-    startCommand: python -m uvicorn backend.app:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.0
-```
-
-### 2. Deploy on Render
-
-- Connect your GitHub.
-- Select "Web Service".
-- Render will detect the Python environment and install the ML models automatically on the first run.
+1.  Connect your GitHub to Render.
+2.  Go to **Blueprints** in the top menu.
+3.  Click **New Blueprint Instance**.
+4.  Select your repository.
+5.  Render will automatically detect the settings and start building!
+    - _Note_: The first build takes 5-8 minutes as it installs TensorFlow.
+    - _Note_: It will automatically use **SQLite** for the database, so you don't need to set up any external DB!
 
 ---
 
@@ -64,13 +38,15 @@ services:
 
 Once your Backend is live on Render:
 
-1. Copy the URL Render provides.
-2. Go back to Vercel and update your `VITE_API_URL`.
-3. Re-deploy the frontend.
+1.  Copy the URL Render provides (ending in `.onrender.com`).
+2.  Go to your **Vercel Project Settings** -> **Environment Variables**.
+3.  Update (or add) `VITE_API_URL` with that URL.
+4.  Re-deploy the frontend (or just wait for it to update).
 
 ---
 
 ## ⚠️ Important Deployment Notes
 
 - **Cold Starts**: On free tiers, the ML model might take 30-60 seconds to "wake up" for the first verification.
-- **Model Downloads**: The backend will download the **ArcFace** model (~150MB) on its first initialization. Ensure your hosting has at least 512MB of RAM.
+- **Memory**: This app requires the **Starter** or **Standard** instance on Render to run smoothly with TensorFlow. If using the Free tier, it may be slow.
+- **Security**: I've enabled automatic `JWT_SECRET` generation in the blueprint for your security.
