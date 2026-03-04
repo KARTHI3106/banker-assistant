@@ -1,4 +1,4 @@
-# AI Face Verification Assistant 🏦
+# AI Face Verification Assistant 
 
 A hackathon-ready prototype for bank officers to verify customer identity using live face capture and ID photo comparison.
 
