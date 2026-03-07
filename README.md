@@ -2,7 +2,7 @@
 
 A hackathon-ready prototype for bank officers to verify customer identity using live face capture and ID photo comparison.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Backend (Python 3.13)
 - **FastAPI**: High-performance async web framework.
